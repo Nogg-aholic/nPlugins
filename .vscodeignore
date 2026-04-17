@@ -1,0 +1,7 @@
+src/**
+tsconfig.json
+README.md
+out/test/**
+out/example.*
+out/hostCallbacks.*
+out/pluginConfig.*

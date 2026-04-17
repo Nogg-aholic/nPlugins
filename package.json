@@ -1,0 +1,130 @@
+{
+  "name": "nplugins",
+  "displayName": "nPlugins",
+  "description": "Workspace plugin host and surface renderer for VS Code.",
+  "version": "0.0.6",
+  "private": "true",
+  "publisher": "local",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nogg-aholic/nplugins.git"
+  },
+  "type": "module",
+  "main": "./out/extension.js",
+  "engines": {
+    "vscode": "^1.115.0"
+  },
+  "activationEvents": [
+    "onStartupFinished",
+    "onView:nPlugins.sidebar.plugins",
+    "onView:nPlugins.sidebar.content",
+    "onCommand:nPlugins.openSidebar",
+    "onCommand:nPlugins.refreshPlugins",
+    "onCommand:nPlugins.plugin.start",
+    "onCommand:nPlugins.plugin.stop"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "nPlugins.openSidebar",
+        "title": "nPlugins: Open Sidebar"
+      },
+      {
+        "command": "nPlugins.refreshPlugins",
+        "title": "nPlugins: Refresh Plugins"
+      },
+      {
+        "command": "nPlugins.plugin.start",
+        "title": "nPlugins: Start Plugin"
+      },
+      {
+        "command": "nPlugins.plugin.stop",
+        "title": "nPlugins: Stop Plugin"
+      },
+      {
+        "command": "nPlugins.pluginScript",
+        "title": "nPlugins: Run Plugin Script"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "nPlugins",
+          "title": "nPlugins",
+          "icon": "media/activitybar.svg"
+        }
+      ]
+    },
+    "views": {
+      "nPlugins": [
+        {
+          "id": "nPlugins.sidebar.plugins",
+          "name": "Plugins"
+        },
+        {
+          "type": "webview",
+          "id": "nPlugins.sidebar.content",
+          "name": "Plugin Content"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "nPlugins.refreshPlugins",
+          "when": "view == nPlugins.sidebar.plugins",
+          "group": "navigation"
+        },
+        {
+          "command": "nPlugins.refreshPlugins",
+          "when": "view == nPlugins.sidebar.content",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "nPlugins.plugin.start",
+          "when": "view == nPlugins.sidebar.plugins && viewItem =~ /plugin:stopped/",
+          "group": "inline@1"
+        },
+        {
+          "command": "nPlugins.plugin.stop",
+          "when": "view == nPlugins.sidebar.plugins && viewItem =~ /plugin:running/",
+          "group": "inline@2"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "nPlugins.openSidebar"
+        },
+        {
+          "command": "nPlugins.refreshPlugins"
+        },
+        {
+          "command": "nPlugins.plugin.start"
+        },
+        {
+          "command": "nPlugins.plugin.stop"
+        },
+        {
+          "command": "nPlugins.pluginScript"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "clean": "node ./scripts/clean.mjs",
+    "bump:version": "node ./scripts/bump-version.mjs",
+    "compile": "node ./scripts/clean.mjs && bunx tsc -p ./tsconfig.json",
+    "watch": "bunx tsc -p ./tsconfig.json --watch",
+    "package:vsix": "node ./scripts/package-vsix.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.2",
+    "@vscode/vsce": "^3.6.2",
+    "typescript": "^6.0.2"
+  },
+  "dependencies": {
+    "@types/vscode": "^1.115.0"
+  }
+}
