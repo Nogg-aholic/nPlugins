@@ -2,7 +2,7 @@
   "name": "nplugins",
   "displayName": "nPlugins",
   "description": "Workspace plugin host and surface renderer for VS Code.",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "publisher": "Nogg-aholic",
   "repository": {
     "type": "git",
@@ -130,7 +130,8 @@
     "bump:version": "node ./scripts/bump-version.mjs",
     "compile": "node ./scripts/clean.mjs && bunx tsc -p ./tsconfig.json",
     "watch": "bunx tsc -p ./tsconfig.json --watch",
-    "package:vsix": "node ./scripts/package-vsix.mjs"
+    "package:vsix": "node ./scripts/package-vsix.mjs",
+    "package:vsix:ci": "node ./scripts/package-vsix-ci.mjs"
   },
   "devDependencies": {
     "@types/node": "^25.6.0",

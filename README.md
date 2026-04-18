@@ -182,6 +182,30 @@ Available scripts:
 - `npm run watch`
 - `npm run clean`
 - `npm run package:vsix`
+- `npm run package:vsix:ci`
+
+## Release Workflow
+
+GitHub Actions workflow: [.github/workflows/release-nplugins.yml](../../.github/workflows/release-nplugins.yml)
+
+Behavior:
+
+- On push of a tag matching `nplugins-v*`, the workflow builds and packages the extension.
+- It uploads the `.vsix` as a workflow artifact.
+- It creates a GitHub release for the tag and attaches the `.vsix`.
+
+Tagging flow:
+
+1. Set the target version in `packages/nPlugins/package.json`.
+2. Commit that version.
+3. Create a tag like `nplugins-v0.0.8`.
+4. Push the commit and tag.
+
+Notes:
+
+- CI packaging uses `package:vsix:ci`, which does not mutate the version.
+- Local `package:vsix` still bumps the patch version before packaging.
+- The workflow verifies that the tag version matches `packages/nPlugins/package.json`.
 
 ## Authoring Guidance
 
