@@ -2,13 +2,26 @@
   "name": "nplugins",
   "displayName": "nPlugins",
   "description": "Workspace plugin host and surface renderer for VS Code.",
-  "version": "0.0.6",
-  "private": "true",
-  "publisher": "local",
+  "version": "0.0.8",
+  "publisher": "Nogg-aholic",
   "repository": {
     "type": "git",
     "url": "https://github.com/Nogg-aholic/nplugins.git"
   },
+  "homepage": "https://github.com/Nogg-aholic/nplugins#readme",
+  "bugs": {
+    "url": "https://github.com/Nogg-aholic/nplugins/issues"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "plugins",
+    "runtime",
+    "workspace",
+    "sidebar",
+    "host"
+  ],
   "type": "module",
   "main": "./out/extension.js",
   "engines": {
@@ -120,9 +133,9 @@
     "package:vsix": "node ./scripts/package-vsix.mjs"
   },
   "devDependencies": {
-    "@types/node": "^25.5.2",
-    "@vscode/vsce": "^3.6.2",
-    "typescript": "^6.0.2"
+    "@types/node": "^25.6.0",
+    "@vscode/vsce": "^3.9.0",
+    "typescript": "^6.0.3"
   },
   "dependencies": {
     "@types/vscode": "^1.115.0"
